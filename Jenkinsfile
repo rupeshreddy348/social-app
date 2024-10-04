@@ -1,5 +1,9 @@
 pipeline {
     agent any
+    environment {
+        NODEJS_HOME = tool name: 'NodeJS 16', type: 'NodeJSInstallation' // Set NodeJS version
+        PATH = "${NODEJS_HOME}/bin:${env.PATH}"
+    }
     stages {
         stage('Clone Repository') {
             steps {
@@ -16,10 +20,16 @@ pipeline {
                 sh 'npm test'
             }
         }
+        stage('Build') {
+            steps {
+                echo 'Building the application...'
+            }
+        }
         stage('Deploy') {
             steps {
                 echo 'Deploying the application...'
-                sh 'npm start &'
+                // Add your deployment steps here (For example, starting the server)
+                sh 'nohup npm start &'
             }
         }
     }
@@ -28,7 +38,7 @@ pipeline {
             echo 'Application deployed successfully!'
         }
         failure {
-            echo 'Deployment failed!'
+            echo 'Pipeline failed!'
         }
     }
 }
