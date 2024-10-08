@@ -1,7 +1,7 @@
 pipeline {
     agent any
     environment {
-        NODEJS_HOME = tool name: 'NodeJS 22.9.0', type: 'NodeJSInstallation' // Set NodeJS version
+        NODEJS_HOME = tool name: 'NodeJS 16.0.0', type: 'NodeJSInstallation' // Set NodeJS version
         PATH = "${NODEJS_HOME}/bin:${env.PATH}"
     }
     stages {
