@@ -1,52 +1,41 @@
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
     margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0; /* Light background */
 }
 
-.login-container {
-    background-color: #fff;
+.container {
+    background-color: #fff; /* White background for the form */
     padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    width: 300px; /* Adjust width as needed */
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    text-align: center; /* Center align text */
+    width: 300px; /* Fixed width */
 }
 
 .profile-photo {
-    width: 100px; /* Adjust size as needed */
-    height: 100px; /* Adjust size as needed */
-    border-radius: 50%;
-    margin-bottom: 20px;
+    width: 100px; /* Set the width of the profile photo */
+    height: 100px; /* Set the height of the profile photo */
+    border-radius: 50%; /* Make it circular */
+    margin-bottom: 15px; /* Space between the image and the title */
 }
 
-input[type="text"], input[type="password"] {
-    width: 100%;
+h1 {
+    font-size: 1.5em; /* Adjust the heading size */
+    margin-bottom: 15px; /* Space below heading */
+}
+
+input[type="text"],
+input[type="password"] {
+    width: 100%; /* Full width */
     padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    margin-bottom: 10px;
+    margin: 10px 0; /* Space between inputs */
+    border: 1px solid #ccc; /* Border styling */
+    border-radius: 5px; /* Rounded corners */
 }
 
 button {
-    padding: 10px;
-    background-color: #007BFF;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    width: 100%;
-}
-
-button:hover {
-    background-color: #0056b3;
-}
-
-p {
-    margin-top: 10px;
-    color: #555;
-}
