@@ -1,62 +1,52 @@
-/* Basic reset for the body */
 body {
     font-family: Arial, sans-serif;
     background-color: #f4f4f4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
     margin: 0;
-    padding: 0;
 }
 
-/* Centering the login container */
 .login-container {
-    width: 300px;
+    background-color: #fff;
     padding: 20px;
-    background-color: #ffffff;
+    border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    border-radius: 5px;
-    margin: 100px auto; /* Centering the login box */
     text-align: center;
+    width: 300px; /* Adjust width as needed */
 }
 
-/* Profile photo styling */
 .profile-photo {
-    width: 100px; /* Adjust the size as needed */
-    height: auto; /* Maintain aspect ratio */
-    border-radius: 50%; /* Circular photo */
-    margin-bottom: 20px; /* Space below the photo */
+    width: 100px; /* Adjust size as needed */
+    height: 100px; /* Adjust size as needed */
+    border-radius: 50%;
+    margin-bottom: 20px;
 }
 
-/* Form group styling */
-.form-group {
-    margin-bottom: 15px; /* Space between fields */
-}
-
-/* Input field styling */
-input[type="text"],
-input[type="password"] {
+input[type="text"], input[type="password"] {
     width: 100%;
     padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-bottom: 10px;
 }
 
-/* Button styling */
 button {
-    background-color: #5cb85c; /* Bootstrap green */
-    color: white;
     padding: 10px;
+    background-color: #007BFF;
+    color: white;
     border: none;
-    border-radius: 5px;
+    border-radius: 4px;
     cursor: pointer;
-    width: 100%; /* Full width button */
+    width: 100%;
 }
 
 button:hover {
-    background-color: #4cae4c; /* Darker green on hover */
+    background-color: #0056b3;
 }
 
-/* Responsive design */
-@media (max-width: 400px) {
-    .login-container {
-        width: 90%;
-    }
+p {
+    margin-top: 10px;
+    color: #555;
 }
