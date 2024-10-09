@@ -1,22 +1,19 @@
 const express = require('express');
 const mysql = require('mysql');
-const path = require('path');
+const bodyParser = require('body-parser');
 
 const app = express();
 const port = 3000;
 
-// Middleware to serve static files (CSS, images, etc.)
-app.use(express.static(path.join(__dirname, 'public')));
-
-// Middleware to parse form data
-app.use(express.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.static('public')); // Serve static files
 
 // Create a connection to the database
 const db = mysql.createConnection({
     host: 'localhost',
     user: 'root',
-    password: 'MySecureP@ss1', // Change this to your actual MySQL password
-    database: 'social_app' // Change this to your actual database name
+    password: 'MySecureP@ss1',
+    database: 'social_app'
 });
 
 // Connect to the database
@@ -28,51 +25,44 @@ db.connect((err) => {
     console.log('Connected to the database.');
 });
 
-// Serve the login page
+// Define a route for the home page
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'index.html'));
+    res.sendFile(__dirname + '/public/login.html'); // Serve login page
 });
 
-// Serve the sign-up page
+// Define a route for the signup page
 app.get('/signup', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'signup.html'));
+    res.sendFile(__dirname + '/public/signup.html'); // Serve signup page
 });
 
-// Handle user sign-up
-app.post('/user/signup', (req, res) => {
-    const { username, password } = req.body;
-
-    // Basic validation (should be improved)
+// Handle user registration
+app.post('/signup', (req, res) => {
+    const { newUsername, newPassword } = req.body;
     const query = 'INSERT INTO users (username, password) VALUES (?, ?)';
-    db.query(query, [username, password], (err, results) => {
+    
+    db.query(query, [newUsername, newPassword], (err, results) => {
         if (err) {
-            console.error('Error during sign-up:', err);
-            return res.status(500).send('Internal Server Error');
+            console.error('Error during signup:', err.stack);
+            return res.status(500).send('Error during signup.');
         }
-
-        // Successful sign-up, redirect to login page
-        res.redirect('/');
+        res.redirect('/'); // Redirect to login page after signup
     });
 });
 
-// Handle the login form submission
-app.post('/user/login', (req, res) => {
+// Handle user login
+app.post('/login', (req, res) => {
     const { username, password } = req.body;
-
-    // Here, you should implement your user authentication logic.
     const query = 'SELECT * FROM users WHERE username = ? AND password = ?';
+
     db.query(query, [username, password], (err, results) => {
         if (err) {
-            console.error('Error during query execution:', err);
-            return res.status(500).send('Internal Server Error');
+            console.error('Error during login:', err.stack);
+            return res.status(500).send('Error during login.');
         }
-
         if (results.length > 0) {
-            // Successful login, redirect to home page
-            res.sendFile(path.join(__dirname, 'public', 'home.html'));
+            res.send('Welcome to the home page!'); // Display home page
         } else {
-            // Invalid credentials
-            res.send('Invalid username or password. <a href="/">Try again</a>.');
+            res.status(401).send('Invalid username or password.'); // Invalid credentials
         }
     });
 });
