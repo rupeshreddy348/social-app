@@ -10,7 +10,7 @@ const port = 3000;
 const db = mysql.createConnection({
     host: 'localhost',
     user: 'root',
-    password: 'social@155',
+    password: 'sai.prasad@155',
     database: 'social_app'
 });
 
@@ -21,7 +21,7 @@ db.connect(err => {
 
 // Middleware
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(express.static('public'));
+app.use(express.static('public'));  // This will serve static files from 'public' folder
 
 // Routes
 app.use('/user', require('./routes/user'));
