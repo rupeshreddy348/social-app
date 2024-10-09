@@ -4,32 +4,46 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Welcome to Sai's Social Media Platform</title>
-    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/style.css"> <!-- Link to your main CSS -->
     <style>
         body {
-            background-image: url('/devopstools.jfif'); /* Set background image */
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            color: #ffffff; /* Change text color to white for better contrast */
+            background-image: url('/devopstools.jfif'); /* Path to your background image */
             background-size: cover; /* Cover the entire page */
             background-position: center; /* Center the image */
-            color: white; /* Change text color to white for better visibility */
-            font-family: Arial, sans-serif; /* Set a nice font */
-            padding: 20px; /* Add some padding */
         }
-        h1 {
+
+        header {
             text-align: center;
-            margin-bottom: 20px;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.5); /* Semi-transparent background for header */
         }
+
+        main {
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.5); /* Semi-transparent background for main content */
+            border-radius: 10px; /* Rounded corners */
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 20px;
+        }
+
         .content {
             max-width: 800px; /* Limit content width */
             margin: auto; /* Center the content */
-            background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background for readability */
-            padding: 20px; /* Add padding inside content */
-            border-radius: 10px; /* Rounded corners */
         }
     </style>
 </head>
 <body>
-    <div class="content">
+    <header>
         <h1>About Me</h1>
+    </header>
+    <main class="content">
         <p>Hi, I'm Sai, a DevOps engineer at Milvik Technologies. I have experience with various tools and practices that help improve collaboration and productivity in software development.</p>
         <p>Here are some key roles I focus on:</p>
         <ul>
@@ -50,6 +64,9 @@
             <li>Join communities and participate in discussions to stay updated on the latest trends.</li>
         </ol>
         <p>Good luck on your DevOps journey!</p>
-    </div>
+    </main>
+    <footer>
+        <p>&copy; 2024 Sai's Social Media Platform</p>
+    </footer>
 </body>
 </html>
