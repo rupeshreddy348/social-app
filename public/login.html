@@ -4,19 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login to Sai's Social Media Platform</title>
-    <link rel="stylesheet" href="styles.css"> <!-- Link to your CSS file -->
+    <link rel="stylesheet" href="css/style.css"> <!-- Link to your CSS file -->
 </head>
 <body>
     <div class="container">
-        <img src="your-photo.jpg" alt="Your photo" class="profile-photo"> <!-- Update this to your photo -->
+        <img src="7192.jpg" alt="Profile Photo" class="profile-photo"> <!-- Profile image -->
         <h1>Login to Sai's Social Media Platform</h1>
-        <form id="loginForm" action="/login" method="POST"> <!-- Ensure action matches your server-side login route -->
-            <input type="text" placeholder="Username" id="username" name="username" required>
-            <input type="password" placeholder="Password" id="password" name="password" required>
+        <form action="home.html" method="POST"> <!-- Add action to direct to home.html -->
+            <input type="text" placeholder="Username" required>
+            <input type="password" placeholder="Password" required>
             <button type="submit">Login</button>
         </form>
-        <p>Don't have an account? <a href="/signup">Sign up here.</a></p> <!-- Sign-up link -->
-        <p>Welcome to Sai's social media platform!</p>
+        <p>Don't have an account? <a href="signup.html">Sign up here.</a></p> <!-- Link to sign-up page -->
     </div>
 </body>
 </html>
