@@ -10,7 +10,7 @@ pipeline {
     stages {
         stage('Clone Repository') {
             steps {
-                git branch: 'main', url: 'https://github.com/saiprasadr870/social-app'
+                git branch: 'main', url: 'https://github.com/rupeshreddy348/social-app'
             }
         }
 
