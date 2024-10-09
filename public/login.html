@@ -3,16 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
     <title>Login Page</title>
-    <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
     <div class="login-container">
-        <!-- Reference the image from the root of the public directory -->
-        <img src="/7192.jpg" alt="Profile Picture" class="profile-pic">
-        <form class="login-form" action="/login" method="POST">
-            <input type="text" name="username" placeholder="Username" required>
-            <input type="password" name="password" placeholder="Password" required>
+        <h2>Login</h2>
+        <img src="public/7192.jpg" alt="Profile Photo" class="profile-photo">
+        <form action="/login" method="POST">
+            <div class="form-group">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+            </div>
             <button type="submit">Login</button>
         </form>
     </div>
