@@ -3,24 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/style.css">
-    <title>Login Page</title>
+    <title>Login to Sai's Social Media Platform</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Link to your CSS file -->
 </head>
 <body>
-    <div class="login-container">
-        <h2>Login</h2>
-        <img src="public/7192.jpg" alt="Profile Photo" class="profile-photo">
-        <form action="/login" method="POST">
-            <div class="form-group">
-                <label for="username">Username:</label>
-                <input type="text" id="username" name="username" required>
-            </div>
-            <div class="form-group">
-                <label for="password">Password:</label>
-                <input type="password" id="password" name="password" required>
-            </div>
+    <div class="container">
+        <img src="your-photo.jpg" alt="Your photo" class="profile-photo"> <!-- Update this to your photo -->
+        <h1>Login to Sai's Social Media Platform</h1>
+        <form id="loginForm" action="/login" method="POST"> <!-- Ensure action matches your server-side login route -->
+            <input type="text" placeholder="Username" id="username" name="username" required>
+            <input type="password" placeholder="Password" id="password" name="password" required>
             <button type="submit">Login</button>
         </form>
+        <p>Don't have an account? <a href="/signup">Sign up here.</a></p> <!-- Sign-up link -->
+        <p>Welcome to Sai's social media platform!</p>
     </div>
 </body>
 </html>
