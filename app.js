@@ -5,9 +5,6 @@ const bodyParser = require('body-parser');
 const app = express();
 const port = 3000;
 
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(express.static('public')); // Serve static files
-
 // Create a connection to the database
 const db = mysql.createConnection({
     host: 'localhost',
@@ -25,44 +22,41 @@ db.connect((err) => {
     console.log('Connected to the database.');
 });
 
-// Define a route for the home page
+// Middleware
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.static('public'));
+
+// Routes
 app.get('/', (req, res) => {
-    res.sendFile(__dirname + '/public/login.html'); // Serve login page
+    res.sendFile(__dirname + '/public/index.html');
 });
 
-// Define a route for the signup page
 app.get('/signup', (req, res) => {
-    res.sendFile(__dirname + '/public/signup.html'); // Serve signup page
+    res.sendFile(__dirname + '/public/signup.html');
 });
 
-// Handle user registration
-app.post('/signup', (req, res) => {
-    const { newUsername, newPassword } = req.body;
-    const query = 'INSERT INTO users (username, password) VALUES (?, ?)';
-    
-    db.query(query, [newUsername, newPassword], (err, results) => {
+app.post('/user/signup', (req, res) => {
+    const { username, password } = req.body;
+    db.query('INSERT INTO users (username, password) VALUES (?, ?)', [username, password], (err) => {
         if (err) {
-            console.error('Error during signup:', err.stack);
-            return res.status(500).send('Error during signup.');
+            console.error('Error signing up:', err);
+            return res.status(500).send('Error signing up.');
         }
         res.redirect('/'); // Redirect to login page after signup
     });
 });
 
-// Handle user login
-app.post('/login', (req, res) => {
+app.post('/user/login', (req, res) => {
     const { username, password } = req.body;
-    const query = 'SELECT * FROM users WHERE username = ? AND password = ?';
-
-    db.query(query, [username, password], (err, results) => {
+    db.query('SELECT * FROM users WHERE username = ? AND password = ?', [username, password], (err, results) => {
         if (err) {
-            console.error('Error during login:', err.stack);
-            return res.status(500).send('Error during login.');
+            console.error('Error logging in:', err);
+            return res.status(500).send('Error logging in.');
         }
         if (results.length > 0) {
-            res.send('Welcome to the home page!'); // Display home page
+            res.sendFile(__dirname + '/public/home.html'); // Serve the home page after successful login
         } else {
-            res.status(401).send('Invalid username or password.'); // Invalid credentials
+            res.status(401).send('Invalid credentials');
         }
     });
 });
