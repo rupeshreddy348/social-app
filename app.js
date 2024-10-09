@@ -8,7 +8,7 @@ const port = 3000;
 const db = mysql.createConnection({
     host: 'localhost',      // Database host
     user: 'root',           // Database username
-    password: 'Social@155!', // Database password
+    password: 'MySecureP@ss1', // Database password
     database: 'social_app'   // Database name (replace with your database name)
 });
 
