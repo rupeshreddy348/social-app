@@ -4,18 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sai's Social Media Platform</title>
-    <link rel="stylesheet" href="/css/style.css"> <!-- Link to your CSS -->
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-    <div class="login-container">
-        <img src="7192.jpg" alt="Profile Photo" class="profile-photo"> <!-- Your photo -->
-        <h1>Login to Sai's Social Media Platform</h1>
-        <form action="/user/login" method="POST">
-            <input type="text" name="username" placeholder="Username" required><br>
-            <input type="password" name="password" placeholder="Password" required><br>
-            <button type="submit">Login</button>
-        </form>
-        <p>Welcome to Sai's social media platform!</p>
-    </div>
+    <h1>Login to Sai's Social Media Platform</h1>
+    <form action="/user/login" method="POST">
+        <input type="text" name="username" placeholder="Username" required><br>
+        <input type="password" name="password" placeholder="Password" required><br>
+        <button type="submit">Login</button>
+    </form>
+    <p>Don't have an account? <a href="/signup">Sign up here</a>.</p>
 </body>
 </html>
