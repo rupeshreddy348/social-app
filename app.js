@@ -15,8 +15,8 @@ app.use(express.urlencoded({ extended: true }));
 const db = mysql.createConnection({
     host: 'localhost',
     user: 'root',
-    password: 'MySecureP@ss1',
-    database: 'social_app'
+    password: 'MySecureP@ss1', // Change this to your actual MySQL password
+    database: 'social_app' // Change this to your actual database name
 });
 
 // Connect to the database
