@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Welcome to Sai's Social Media Platform</title>
     <link rel="stylesheet" href="/css/style.css"> <!-- Link to your main CSS -->
+    <!-- Font Awesome for icons -->
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
     <style>
         body {
             margin: 0;
@@ -37,6 +39,24 @@
             max-width: 800px; /* Limit content width */
             margin: auto; /* Center the content */
         }
+
+        /* Styling the social media icons */
+        .social-icons {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .social-icons a {
+            margin: 0 10px;
+            color: #ffffff;
+            font-size: 30px;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            color: #ff6347; /* Change color on hover */
+        }
     </style>
 </head>
 <body>
@@ -64,6 +84,23 @@
             <li>Join communities and participate in discussions to stay updated on the latest trends.</li>
         </ol>
         <p>Good luck on your DevOps journey!</p>
+
+        <!-- Social media section -->
+        <div class="social-icons">
+            <h2>Connect with me on social media</h2>
+            <a href="https://www.facebook.com/your-profile" target="_blank" aria-label="Facebook">
+                <i class="fab fa-facebook"></i>
+            </a>
+            <a href="https://www.twitter.com/your-profile" target="_blank" aria-label="Twitter">
+                <i class="fab fa-twitter"></i>
+            </a>
+            <a href="https://www.linkedin.com/in/your-profile" target="_blank" aria-label="LinkedIn">
+                <i class="fab fa-linkedin"></i>
+            </a>
+            <a href="https://github.com/your-profile" target="_blank" aria-label="GitHub">
+                <i class="fab fa-github"></i>
+            </a>
+        </div>
     </main>
     <footer>
         <p>&copy; 2024 Sai's Social Media Platform</p>
