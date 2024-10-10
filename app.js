@@ -1,36 +1,67 @@
 const express = require('express');
+const mysql = require('mysql');
+const bodyParser = require('body-parser');
+
 const app = express();
-const path = require('path');
-const userRoutes = require('./routes/user');
+const port = 3000;
 
-// Middleware to serve static files from "public" directory
-app.use(express.static(path.join(__dirname, 'public')));
-
-// Middleware to parse form data
-app.use(express.urlencoded({ extended: true }));
-
-// Basic route for homepage
-app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'index.html'));
+// Create a connection to the database
+const db = mysql.createConnection({
+    host: 'localhost',
+    user: 'root',
+    password: 'MySecureP@ss1',
+    database: 'social_app'
 });
 
-// Route for login page
-app.get('/login', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'login.html'));
-});
-
-// Handle login form submission
-app.post('/login', (req, res) => {
-    const { username, password } = req.body;
-    if (username === 'admin' && password === 'password') {
-        res.send('<h1>Login successful!</h1>');
-    } else {
-        res.send('<h1>Login failed. Please try again.</h1>');
+// Connect to the database
+db.connect((err) => {
+    if (err) {
+        console.error('Database connection failed:', err.stack);
+        return;
     }
+    console.log('Connected to the database.');
+});
+
+// Middleware
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.static('public'));
+
+// Routes
+app.get('/', (req, res) => {
+    res.sendFile(__dirname + '/public/index.html');
+});
+
+app.get('/signup', (req, res) => {
+    res.sendFile(__dirname + '/public/signup.html');
+});
+
+app.post('/user/signup', (req, res) => {
+    const { username, password } = req.body;
+    db.query('INSERT INTO users (username, password) VALUES (?, ?)', [username, password], (err) => {
+        if (err) {
+            console.error('Error signing up:', err);
+            return res.status(500).send('Error signing up.');
+        }
+        res.redirect('/'); // Redirect to login page after signup
+    });
+});
+
+app.post('/user/login', (req, res) => {
+    const { username, password } = req.body;
+    db.query('SELECT * FROM users WHERE username = ? AND password = ?', [username, password], (err, results) => {
+        if (err) {
+            console.error('Error logging in:', err);
+            return res.status(500).send('Error logging in.');
+        }
+        if (results.length > 0) {
+            res.sendFile(__dirname + '/public/home.html'); // Serve the home page after successful login
+        } else {
+            res.status(401).send('Invalid credentials');
+        }
+    });
 });
 
 // Start the server
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`);
+app.listen(port, () => {
+    console.log(`Server running on http://localhost:${port}`);
 });
