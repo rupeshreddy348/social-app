@@ -5,12 +5,12 @@ const bodyParser = require('body-parser');
 const app = express();
 const port = 3000;
 
-// Create a connection to the database
+// Create a connection to the database using environment variables
 const db = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: 'MySecureP@ss1',
-    database: 'social_app'
+    host: process.env.DB_HOST || 'localhost', // Use the DB_HOST environment variable or default to localhost
+    user: process.env.DB_USER || 'root',      // Use the DB_USER environment variable or default to root
+    password: process.env.DB_PASSWORD || 'MySecureP@ss1', // Use the DB_PASSWORD environment variable or default to your password
+    database: process.env.DB_NAME || 'social_app' // Use the DB_NAME environment variable or default to social_app
 });
 
 // Connect to the database
@@ -29,6 +29,11 @@ app.use(express.static('public'));
 // Routes
 app.get('/', (req, res) => {
     res.sendFile(__dirname + '/public/index.html');
+});
+
+// New route for login page
+app.get('/login', (req, res) => {
+    res.sendFile(__dirname + '/public/login.html'); // Serve the login page
 });
 
 app.get('/signup', (req, res) => {

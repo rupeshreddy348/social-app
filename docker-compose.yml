@@ -1,31 +1,39 @@
-version: '3'
+version: '3.8'
+
 services:
   app:
-    build: .
+    build: .                               # Build from the current directory
     ports:
-      - "3000:3000"
+      - "3000:3000"                        # Maps port 3000 on host to port 3000 in the container
     depends_on:
-      - db
+      - db                                 # Ensures the db service starts before the app
     environment:
-      - DB_HOST=db
-      - DB_USER=root
-      - DB_PASSWORD=MySecureP@ss1
-      - DB_NAME=social_app
+      - DB_HOST=db                          # Set the DB host to the service name (changed from mariadb)
+      - DB_USER=root                       # Database user
+      - DB_PASSWORD=MySecureP@ss1          # Database password
+      - DB_NAME=social_app                  # Database name
     volumes:
-      - .:/usr/src/app
+      - .:/usr/src/app                     # Mount the current directory to the container
     networks:
-      - my-network
+      - my-network                          # Connect to the specified network
 
   db:
-    image: mysql:5.7
+    image: mariadb:latest                  # Use the latest MariaDB image
+    restart: always                         # Restart the container if it stops
     environment:
-      MYSQL_ROOT_PASSWORD: MySecureP@ss1
-      MYSQL_DATABASE: social_app
+      MYSQL_ROOT_PASSWORD: MySecureP@ss1   # Set the root password for MariaDB
+      MYSQL_DATABASE: social_app            # Automatically create the database
+      MYSQL_USER: root                      # Use 'root' user
+      MYSQL_PASSWORD: MySecureP@ss1         # Set password for 'root'
     ports:
-      - "3306:3306"
+      - "3306:3306"                         # Maps port 3306 on host to port 3306 in the container
     networks:
-      - my-network
+      - my-network                          # Connect to the specified network
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
 
 networks:
-  my-network:
-    driver: bridge
+  my-network:                              # Define the custom network
